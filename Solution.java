@@ -1,5 +1,11 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
-
+import java.util.Set;
+// import Utility.Utility;
 class WeekOneDayTwo{
     public void roots(int b, int c){
         double d = b*b - 4*c;
@@ -125,6 +131,7 @@ class WeekOneDayFour{
     public void Egg_Carton(){
         int eggs = sc.nextInt();
         System.out.println((int)Math.ceil((double)eggs/12));
+        // System.out.println(String.);
     }
 
     public void Perfect_Square(){
@@ -155,12 +162,231 @@ class WeekOneDayFour{
     }
 }
 
-class Solution {
+
+class WeekOneDayFive {
+    private Scanner sc;
+
+    public WeekOneDayFive(Scanner sc) {
+        this.sc = sc;
+    }
+
+    public void Calculate_Factorial() {
+        int num = sc.nextInt();
+        int fact = 1;
+        for (int i = 1; i <= num; i++) {
+            fact *= i;
+        }
+        System.out.println(fact);
+    }
+
+    public boolean checkPrimeNumber(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int[] rotateArrayRight(int number) {
+        String val = String.valueOf(number);
+        int[] result = new int[val.length()];
+        for (int i = 0; i < val.length(); i++) {
+            String valResult = "" + val.charAt(val.length() - 1);
+            for (int j = 0; j < val.length() - 1; j++) {
+                valResult = valResult + val.charAt(j);
+            }
+            val = valResult;
+            result[i] = Integer.parseInt(valResult);
+        }
+        return result;
+    }
+
+    public boolean isCircularPrime(int number) {
+        int[] rotatedArray = rotateArrayRight(number);
+        for (int i : rotatedArray) {
+            if (!checkPrimeNumber(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void nthcircularprime() {
+        int number = sc.nextInt();
+        int i = 0;
+        int j = 0;
+        while (i < number) {
+            if (isCircularPrime(j)) {
+                i++;
+            }
+            j++;
+        }
+        System.out.println(j - 1);
+    }
+
+    public void SquareDifferenceProblem() {
+        long number = sc.nextLong();
+        long sum = 0, squareSum = 0;
+        long difference = 0;
+        for (long i = 0; i <= number; i++) {
+            sum += i;
+            squareSum += i * i;
+        }
+        difference = (sum * sum) - squareSum;
+        System.out.println(difference);
+    }
+
+    public void countOccurences() {
+        String first = sc.nextLine();
+        String second = sc.nextLine();
+        int i = 0;
+        int len = second.length();
+        int j = 0;
+        while (i < first.length()) {
+            if (first.substring(i, len).equals(second)) {
+                j++;
+            }
+            i++;
+            if (len < first.length()) {
+                len++;
+            }
+        }
+        System.out.println(j);
+    }
+
+    public void stringcompressions() {
+        String s = sc.nextLine();
+        String result = "";
+        for (int i = 0; i < s.length(); i++) {
+            int count = 1;
+            for (int j = i + 1; j < s.length(); j++) {
+                if (s.charAt(i) == s.charAt(j)) {
+                    count++;
+                } else {
+                    break;
+                }
+            }
+            if (count != 1) {
+                result += s.charAt(i) + "" + count;
+            } else {
+                result += s.charAt(i) + "";
+            }
+            i += count - 1;
+        }
+        System.out.println(result);
+    }
+
+    public List<Integer> primefactors(int number) {
+        List<Integer> factors = new ArrayList<>();
+        for (int i = 2; i <= number; i++) {
+            while (number != 1) {
+                if (checkPrimeNumber(i) && number % i == 0) {
+                    number = number / i;
+                    factors.add(i);
+                } else {
+                    i++;
+                }
+            }
+        }
+        return factors;
+    }
+
+    public static Map<Integer, Integer> countItems(List<Integer> list) {
+        Map<Integer, Integer> itemCount = new HashMap<>();
+        for (int item : list) {
+            if (itemCount.get(item) != null) {
+                itemCount.put(item, itemCount.get(item) + 1);
+            } else {
+                itemCount.put(item, 1);
+            }
+        }
+        return itemCount;
+    }
+
+    public boolean ispowerfulNumber(int number) {
+        List<Integer> factors = primefactors(number);
+        Map<Integer, Integer> factorsdict = countItems(factors);
+        for (int i : factorsdict.values()) {
+            if (i < 2) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void nthpowerPrime() {
+        int num = sc.nextInt();
+        int i = 0;
+        int j = 1;
+        while (i < num) {
+            if (ispowerfulNumber(j)) {
+                i++;
+            }
+            j++;
+        }
+        System.out.println(j - 1);
+    }
+
+    public boolean isHappyNumber(int number) {
+        Set<Integer> seen = new HashSet<>();
+        while (number != 1 && !seen.contains(number)) {
+            seen.add(number);
+            number = sumOfSquares(number);
+        }
+        return number == 1;
+    }
+
+    private int sumOfSquares(int number) {
+        int sum = 0;
+        while (number > 0) {
+            int digit = number % 10;
+            sum += digit * digit;
+            number /= 10;
+        }
+        return sum;
+    }
+
+    public void nthHappyNumber() {
+        int n = sc.nextInt();
+        int count = 0;
+        int number = 1;
+        while (count < n) {
+            if (isHappyNumber(number)) {
+                count++;
+            }
+            if (count < n) {
+                number++;
+            }
+        }
+        System.out.println(number);
+    }
+}
+
+
+
+
+
+
+
+
+public class Solution {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        WeekOneDayFour obj = new WeekOneDayFour(sc);
-        obj.Time_Conversion();
+        WeekOneDayFive weekOneDayFive = new WeekOneDayFive(sc);
+
+        
+        weekOneDayFive.nthHappyNumber();
+
         sc.close();
     }
 }
+
+
+
+
+
 
