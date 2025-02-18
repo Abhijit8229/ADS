@@ -4,8 +4,6 @@ class Card:
         self.suit = suit
         self.rank = rank
     
-
-
     def matches(self,other):
         return other.suit == self.suit or other.rank == self.rank
     
@@ -124,7 +122,6 @@ class Game:
         print()
         while True:
             currentPlayer = self.players[self.currentPlayer]
-            
             play = currentPlayer.play_turn(self.topCard,self.deck)
             if play:
                 print(f"{currentPlayer.name}'s Turn. Top Card: {self.topCard}")
