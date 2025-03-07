@@ -1,0 +1,39 @@
+1Test passed.
+Invalid index for insert
+2Test passed.
+3Test passed.
+4Test passed.
+5Test passed.
+6Test passed.
+Invalid index or length for delete
+7Test passed.
+Invalid index or length for delete
+8Test passed.
+9Test passed.
+10Test passed.
+11Test passed.
+12Test passed.
+13Test passed.
+Nothing to undo
+14Test passed.
+15Test passed.
+Nothing to undo
+16Test passed.
+Nothing to redo
+17Test passed.
+18Test passed.
+18Test passed.
+20Test passed.
+21Test passed.
+22Test passed.
+Nothing to redo
+23Test passed.
+24Test passed.
+Invalid index for insert
+25Test passed.
+26Test passed.
+Nothing to redo
+27Test passed.
+28Test passed.
+29Test passed.
+30Test passed.

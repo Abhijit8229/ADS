@@ -1,0 +1,27 @@
+Test Case 1 Passed: Add to front
+Test Case 2 Passed: Add to end
+Test Case 3 Passed: Remove from front
+Test Case 4 Passed: Remove from end
+Test Case 5 Passed: Check empty
+Test Case 6 Passed: Add to front and check size
+Test Case 7 Passed: Find existing element
+Test Case 8 Passed: Find non-existing element
+Test Case 9 Passed: Insert at index
+Test Case 10 Passed: Remove at index
+1 2 
+Test Case 11 Passed: Reverse Traversal
+2 1 
+Test Case 12 Passed: Print List
+Test Case 13 Failed: Check empty after operations
+Test Case 14 Passed: Clear List
+Test Case 15 Passed: Add multiple elements and check size
+Test Case 16 Passed: Get element at index
+Test Case 17 Passed: Swap nodes
+Test Case 18 Passed: Detect cycle (should be False)
+Test Case 19 Passed: Remove from front again
+Test Case 20 Passed: Remove from end again
+Test Case 21 Passed: Add elements and remove all
+Test Case 22 Passed: Insert at index out of bounds
+Test Case 23 Passed: Remove from front (empty list)
+Test Case 24 Passed: Remove from end (empty list)
+Test Case 25 Passed: Check if element exists
