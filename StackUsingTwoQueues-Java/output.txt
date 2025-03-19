@@ -1,0 +1,27 @@
+Test 1 passed
+Test 2 passed: peek() threw exception as expected
+Test 3 passed: pop() threw exception as expected
+Test 4 passed: Stack is not empty after push
+Test 5 passed: peek() returned A
+Test 6 passed: search(A) returned 1
+Test 7 passed: After push(B), peek() returned B
+Test 8 passed: search(B) returned 1
+Test 9 passed: search(A) returned 2
+Test 10 passed: After push(C), peek() returned C
+Test 11 passed: search(C) returned 1
+Test 12 passed: pop() returned C
+Test 13 passed: After pop(), peek() returned B
+Test 14 passed: pop() returned B
+Test 15 passed: pop() returned A
+Test 16 passed: Stack is empty after popping all elements
+Test 17 passed: search(Z) returned -1
+Test 18 passed: search positions correct after multiple pushes
+Test 19 passed: pop and peek worked correctly
+Test 20 passed: search returned 1 for the topmost duplicate Y
+Test 21 passed: duplicate Y handling is correct after pop
+Test 22 passed: push() returned M correctly
+Test 23 passed: peek() returned M
+Test 24 passed: empty() returned true for cleared stack
+Test 25 passed: pop() threw exception on empty stack after clearing
+Total tests passed: 25
+Total tests failed: 0
