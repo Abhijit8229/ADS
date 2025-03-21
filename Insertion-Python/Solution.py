@@ -23,7 +23,7 @@ def main():
 
 # main()
 
-s = "ABHIJIT"
+s = "sadhvik"
 lt = Insertionsort(list(s))
 
 
