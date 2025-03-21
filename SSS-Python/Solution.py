@@ -36,7 +36,8 @@ dt = {
     "open_category": [],
     "BC_category": [],
     "SC_category": [],
-    "ST_category": []
+    "ST_category": [],
+    "final":[]
 }
 
 while True:
@@ -71,84 +72,42 @@ for _ in range(dt["unreserved_category_vacancies"]):
 
 
 remaining_students = dt["students"]
+for i in remaining_students[:]:
+    if i.Reservation_Category == "BC" and dt["BC_category_vacancies"] > 0:
+        dt["BC_category"].append(i)
+        remaining_students.remove(i)
+        dt["BC_category_vacancies"] -= 1
 
-for student in remaining_students[:]: 
-    if student.Reservation_Category == "BC":
-        dt["BC_category"].append(student)
-        remaining_students.remove(student)  
-    elif student.Reservation_Category == "SC":
-        dt["SC_category"].append(student)
-        remaining_students.remove(student)  
-    elif student.Reservation_Category == "ST":
-        dt["ST_category"].append(student)
-        remaining_students.remove(student)  
+for i in remaining_students[:]:
+    if dt["BC_category_vacancies"] > 0:
+        dt["BC_category"].append(i)
+        remaining_students.remove(i)
+        dt["BC_category_vacancies"] -= 1
 
+for i in remaining_students[:]:
+    if i.Reservation_Category == "SC" and dt["SC_category_vacancies"] > 0:
+        dt["SC_category"].append(i)
+        remaining_students.remove(i)
+        dt["SC_category_vacancies"] -= 1
+for i in remaining_students[:]:
+    if dt["SC_category_vacancies"] > 0:
+        dt["SC_category"].append(i)
+        remaining_students.remove(i)
+        dt["SC_category_vacancies"] -= 1
 
-dt["BC_category"].sort(key=cmp_to_key(compare))
-dt["SC_category"].sort(key=cmp_to_key(compare))
-dt["ST_category"].sort(key=cmp_to_key(compare))
+for i in remaining_students[:]:
+    if i.Reservation_Category == "ST" and dt["ST_category_vacancies"] > 0:
+        dt["ST_category"].append(i)
+        remaining_students.remove(i)
+        dt["ST_category_vacancies"] -= 1
 
+for i in remaining_students[:]:
+    if dt["ST_category_vacancies"] > 0:
+        dt["ST_category"].append(i)
+        remaining_students.remove(i)
+        dt["ST_category_vacancies"] -= 1
 
-if 'final' not in dt:
-    dt['final'] = []
-
-# print([str(i) for i in dt["students"]])
-for i in dt["open_category"]:
-    dt['final'].append(i)
-
-# print(len(dt["BC_category"]),len(dt["SC_category"]),len(dt["ST_category"]))
-if len(dt["BC_category"]) != 0 :
-        for i in range(min(dt["BC_category_vacancies"],len(dt["BC_category"]))):
-            dt['final'].append(dt["BC_category"][i])
-            dt["BC_category"].remove(dt["BC_category"][i])
-            dt["BC_category_vacancies"]-=1
-else:
-    for i in range(dt["BC_category_vacancies"]):
-        dt['final'].append(dt["students"].pop(0))
-        dt["BC_category_vacancies"]-=1
-
-
-if len(dt["ST_category"]) != 0:
-        
-        for i in range(dt["ST_category_vacancies"]):
-            dt['final'].append(dt["ST_category"][i])
-            dt["ST_category"].remove(dt["ST_category"][i])
-            dt["ST_category_vacancies"]-=1
-else:
-  
-    for i in range(dt["ST_category_vacancies"]):
-        dt['final'].append(dt["students"].pop(0))
-        dt["ST_category_vacancies"]-=1
-
-
-if len(dt["SC_category"]) != 0:
-        
-        for i in range(dt["SC_category_vacancies"]):
-            dt['final'].append(dt["SC_category"][i])
-            dt["SC_category"].remove(dt["SC_category"][i])
-            dt["SC_category_vacancies"]-=1
-else:
-
-    for i in range(dt["SC_category_vacancies"]):
-        dt['final'].append(dt["students"].pop(0))
-        dt["SC_category_vacancies"]-=1
-
-
-
-if(len(dt["BC_category"])!=dt["BC_category_vacancies"]):
-    for i in range(dt["BC_category_vacancies"]-1):
-        dt['final'].append(dt["students"].pop(0))
-        dt["BC_category_vacancies"]-=1
-    if(dt["BC_category_vacancies"]):
-        dt['final'].append(dt['ST_category'][0])
-if(len(dt["SC_category"])!=dt["ST_category_vacancies"]):
-    for i in range(dt["ST_category_vacancies"]):
-        dt['final'].append(dt["students"].pop(0))
-        dt["ST_category_vacancies"]-=1
-if(len(dt["SC_category"])!=dt["SC_category_vacancies"]):
-    for i in range(dt["SC_category_vacancies"]):
-        dt['final'].append(dt["students"].pop(0))
-        dt["SC_category_vacancies"]-=1
+dt['final'] = dt["open_category"]+dt["BC_category"]+dt["SC_category"]+dt["ST_category"]
 
 dt["final"].sort(key=cmp_to_key(compare))
 for i in dt['final']:
