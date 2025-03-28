@@ -1,5 +1,35 @@
 import datetime
 from functools import cmp_to_key
+
+def merge(a,aux,lo,hi,mid,compareTo):
+    i, j = lo, mid + 1
+    
+    for k in range(lo, hi + 1):
+        if i > mid:
+            a[k] = aux[j]
+            j += 1
+        elif j > hi:
+            a[k] = aux[i]
+            i += 1
+        elif compareTo(aux[i],aux[j])>0:
+            a[k] = aux[j]
+            j += 1
+        else:
+            a[k] = aux[i]
+            i += 1
+
+
+
+def sort(a,lo,hi,compareTo):
+    if(lo>=hi):
+        return 
+    mid = (lo+hi)//2
+    sort(a,lo,mid,compareTo)
+    sort(a,mid+1,hi,compareTo)
+    aur = a[:]
+    merge(a,aur,lo,hi,mid,compareTo)
+
+
 class person:
     def __init__(self, Student_Name, Date_of_Birth, Subject_1_Marks, Subject_2_Marks, Subject_3_Marks, Total_Marks, Reservation_Category):
         self.Student_Name = Student_Name
@@ -61,8 +91,8 @@ while True:
     except EOFError:
         break
 
-
-dt["students"].sort(key=cmp_to_key(compare))
+sort(dt['students'], 0, len(dt['students']) - 1, compare)
+# dt["students"].sort(key=cmp_to_key(compare))
 
 for i in dt["students"]:
     print(i)
@@ -109,6 +139,7 @@ for i in remaining_students[:]:
 
 dt['final'] = dt["open_category"]+dt["BC_category"]+dt["SC_category"]+dt["ST_category"]
 
-dt["final"].sort(key=cmp_to_key(compare))
+# dt["final"].sort(key=cmp_to_key(compare))
+sort(dt['final'], 0, len(dt['final']) - 1, compare)
 for i in dt['final']:
     print(i)
